@@ -1,3 +1,10 @@
+## Resources
+- [Writing a Google Maps React component](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/#the-map-container-component)
+- [Making Google Maps work with React](https://www.klaasnotfound.com/2016/11/06/making-google-maps-work-with-react/)
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

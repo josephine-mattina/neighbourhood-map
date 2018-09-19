@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Filter from './Filter';
 
 class Header extends Component {
 	render() {
 		return(
 			<header>
-				<h1>Where Vego</h1>
-				<Filter />
+				<h1>Vego Central</h1>
 			</header>
 		)
 	}

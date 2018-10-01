@@ -1,50 +1,80 @@
-/* TODO: Add styles to components */
+/* Global styles */
 *, body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
-.App {
-  /*text-align: center;*/
+.app {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas: 
   "header filter"
   "listings map";
 }
+/* Header */
 header {
   grid-area: header;
 }
 header, .filter {
   background-color: #15845d;
   padding: 16px 0px;
-  color: #FFF
+  color: #fff;
 }
 h1 {
   font-family: 'Varela Round', sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  text-align: center;
+  margin: auto 50px;
 }
+
+/* Filter */
 .filter {
   grid-area: filter;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
   font-size: 12px;
 }
-/* TODO: style filter */
-.filter select {
-  border: none;
-  border-radius: none;
+.custom-select {
+  background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+  height: 30px;
+  overflow: hidden;
+  width: 240px;
+  border-radius: 2px;
+  background-color: #1bc489;
+  margin-left: 20px;
 }
+.custom-select select{
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  height: 30px;
+  padding: 5px;
+  width: 268px;
+  color: #fff;
+}
+
+/* Listings */
 .listings {
   grid-area: listings;
+  background-color: #5b5b55;
+  color: #fff;
+  padding: 50px;
 }
+.single-listing {
+  border-bottom: 2px solid #1bc489;
+  padding-bottom: 30px;
+}
+.single-listing h3 {
+  font-weight: 600;
+}
+.single-listing p {
+  font-weight: 400;
+}
+
+/* Map */
 #map {
   grid-area: map;
   width: 100%;

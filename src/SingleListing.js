@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SingleListing extends Component {
-	render() {
-		return(
-			<article className="single-listing">
-				<h3 className="venue-name">Restaurant Name</h3>
-				<p className="venue-address">33 Example Street, G20 6EZ</p>
-			</article>
-		)
-	}
+const SingleListing = (props) => {
+	const listing = props.listing;
+	return(
+		<article className="single-listing">
+			<h3>{listing.name}</h3>
+			<p>{listing.location.address || "address unavailable"}</p>
+		</article>
+	)
+
 }
 
 export default SingleListing;

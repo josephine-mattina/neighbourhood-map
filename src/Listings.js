@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SingleListing from './SingleListing';
 
-class Listings extends Component {
-	render() {
-		return(
-			<section className="listings">
-				<SingleListing />
-			</section>
-		)
-	}
+const Listings = (props) => {
+	return(
+		<section className="listings">
+			{props.listings.map(listing => (
+				<article key={listing.id}>
+					<SingleListing listing={listing}/>
+				</article>
+			))}
+		</section>
+	);
 }
 
 export default Listings;

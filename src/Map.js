@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
+// TODO: Read docs for adding state to map? For markers? Should all state be in App? 
+// TODO: How to pass state as props here? Constructor (props)?
 export class Map extends Component {
+
 	componentDidMount() {
 		window.initMap = this.initMap;
 		loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyDUsVzFs47MfEzmFIuQCTRfQx_3kXO69RM&callback=initMap')
@@ -9,8 +12,8 @@ export class Map extends Component {
 	initMap() {
 		const google = window.google;
 		const map = new google.maps.Map(document.getElementById('map'), {
-          center:  {lat: 55.859292, lng: -4.258055},
-          zoom: 13
+        	center: {lat: 55.859292, lng: -4.258055},
+        	zoom: 13
 		});
 	}
 
@@ -18,6 +21,7 @@ export class Map extends Component {
 	    return (
 	    	<div>
 		      <div id="map">
+
 
 		      </div>
 	      </div>
@@ -32,5 +36,7 @@ function loadJS(src) {
     script.async = true;
     ref.parentNode.insertBefore(script, ref);
 }
+
+
 
 export default Map;

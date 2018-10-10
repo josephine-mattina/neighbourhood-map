@@ -1,42 +1,57 @@
 import React, { Component } from 'react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-// TODO: Read docs for adding state to map? For markers? Should all state be in App? 
-// TODO: How to pass state as props here? Constructor (props)?
-export class Map extends Component {
+const LoadingContainer = props => (
+	<div id="map">
+		<p>Sorry, Google Maps can't load right now</p>
+	</div>
+);
 
-	componentDidMount() {
-		window.initMap = this.initMap;
-		loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyDUsVzFs47MfEzmFIuQCTRfQx_3kXO69RM&callback=initMap')
-	}
+const Markers = props => (
+	props.locations.map((location, index) => (
+		<Marker 
+			{...props}
+			// {...location.location.labeledLatLngs}
+      		// position={{lat: 55.861099987043744, lng:-4.257893711003083}}
+			key={location.id}
+	    	ref={instance => {
+	        	// add the Marker instance to an array of references
+	        	props.refs[index] = instance;
+      		}}
+      		name={location.name}
+		/>
+	)
+));
 
-	initMap() {
-		const google = window.google;
-		const map = new google.maps.Map(document.getElementById('map'), {
-        	center: {lat: 55.859292, lng: -4.258055},
-        	zoom: 13
-		});
-	}
+export class GlaMap extends Component {
+	markers = [];
 
 	render() {
-	    return (
-	    	<div>
-		      <div id="map">
 
+		return(
+			<Map 
+		        role="application"
+		        aria-label="Map of Glasgow City Centre"
+		        tabIndex="-1"
+				google={this.props.google}
+				zoom={14}
+				initialCenter={{
+					lat: 55.859292,
+					lng: -4.258055
+				}}
+			>
+				<Markers
+					locations={this.props.locations}
+					refs={this.markers}
+				/>
 
-		      </div>
-	      </div>
-	    )
+			</Map>
+		)
 	}
+
 }
 
-function loadJS(src) {
-    var ref = window.document.getElementsByTagName("script")[0];
-    var script = window.document.createElement("script");
-    script.src = src;
-    script.async = true;
-    ref.parentNode.insertBefore(script, ref);
-}
-
-
-
-export default Map;
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyDUsVzFs47MfEzmFIuQCTRfQx_3kXO69RM",
+  LoadingContainer: LoadingContainer
+})(GlaMap)

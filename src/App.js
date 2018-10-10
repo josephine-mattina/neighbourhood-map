@@ -6,7 +6,6 @@ import Map from './Map';
 import * as LocationsAPI from './LocationsAPI';
 import './App.css';
 
-// TODO: Read docs on state & Thinking in React. How to pass state to components as props?
 class App extends Component {
 
   state = {
@@ -17,6 +16,7 @@ class App extends Component {
     LocationsAPI.getAll()
     .then((venues) => {
       this.setState({ venues });
+      console.log(this.state.venues);
     })
   }
 
@@ -26,16 +26,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <main className="app">
         <Header />
         <Filter />
         <Listings 
           listings={this.state.venues}
         />
         <Map 
-
+          locations={this.state.venues}
         />
-      </div>
+      </main>
     );
   }
 }

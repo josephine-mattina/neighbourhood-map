@@ -9,26 +9,38 @@ import './App.css';
 class App extends Component {
 
   state = {
-    venues: []
+    venues: [],
+    value: '2000'
   }
 
+
+
   updateState = () => {
-    LocationsAPI.getAll()
+    LocationsAPI.getAll(this.state.value)
     .then((venues) => {
-      this.setState({ venues });
+      this.setState({venues});
       console.log(this.state.venues);
+      console.log(this.state.value);
     })
   }
+
+
 
   componentDidMount() {
     this.updateState();
   }
 
+// changeRad = (radVar) => {
+//   console.log(radVar)
+// }
+
   render() {
     return (
       <main className="app">
         <Header />
-        <Filter />
+        <Filter 
+          
+        />
         <Listings 
           listings={this.state.venues}
         />

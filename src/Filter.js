@@ -1,34 +1,19 @@
 import React, { Component } from 'react';
 import * as LocationsAPI from './LocationsAPI';
-import * as App from './App';
+import App from './App';
+import Header from './Header';
+import Listings from './Listings';
+import Map from './Map';
 
-class Filter extends Component {
+const Filter = (props) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {value: 2000};
-
-    this.handleChange = this.handleChange.bind(this);
-    console.log('test')
-  }
-
-		handleChange(event){
-			//LocationsAPI.getAll(e.target.value);
-			//this.setState({value: e.target.value});
-			console.log(event.target.value)
-			this.setState({value: event.target.value});
-			console.log(this.state.value)
-
-		}
-
-
-	render() {
 		return(
 			<section className="filter">
 				<h2>Choose a distance</h2>
 				<article className="custom-select">
 					<select 
-						onChange={this.handleChange} 
+						onChange={(event) => props.handleChange(event.target.value)}
+						defaultValue="2000" 
 					>
 						<option value="500">0.5 km</option>
 						<option value="1000">1 km</option>
@@ -37,11 +22,8 @@ class Filter extends Component {
 					</select>
 				</article>
 			</section>
-		)
+		);
 	}
-}
+
 
 export default Filter;
-
-
-//						defaultValue="2000"

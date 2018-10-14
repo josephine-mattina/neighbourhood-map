@@ -6,11 +6,12 @@
   font-weight: 400;
 }
 .app {
-  display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas: 
   "header filter"
   "listings map";
+  /* TODO: sort out vh affecting header/listings on 0.5km */
+  height: 100vh;
 }
 /* Header */
 header {
@@ -32,7 +33,6 @@ h1 {
 /* Filter */
 .filter {
   grid-area: filter;
-  display: flex;
   flex-flow: row wrap;
   align-items: center;
   font-size: 12px;
@@ -59,21 +59,19 @@ h1 {
 /* Listings */
 .listings {
   grid-area: listings;
-  height: 100vh;
   overflow: scroll;
   background-color: #5b5b55;
   color: #fff;
-  padding: 50px;
 }
 .single-listing {
   border-bottom: 2px solid #1bc489;
-  padding: 30px 0px;
+  padding: 30px;
 }
 .single-listing h3 {
   font-weight: 600;
 }
 .single-listing p {
-  margin-top: 5px;
+  display: none;
   font-weight: 400;
 }
 
@@ -90,3 +88,30 @@ h1 {
   padding: 20px;
   color: #fff;
 }
+
+/* Responsive queries */
+
+@media only screen and (min-width: 768px) {
+  .app {
+      display: grid;
+  }
+  .filter {
+      display: flex;
+  }
+}
+@media only screen and (max-width: 767px) {
+/*  .header {
+    order: 1;
+  }
+  .filter {
+    order: 2;
+  }
+  .map {
+    order: 3;
+    position: absolute;
+  }
+  .listings {
+    order: 4;
+  }*/
+}
+

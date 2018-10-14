@@ -10,42 +10,53 @@ class App extends Component {
 
   state = {
     venues: [],
-    value: '2000'
+    value: '2000',
+    position: '' 
   }
-
-
 
   updateState = () => {
     LocationsAPI.getAll(this.state.value)
     .then((venues) => {
       this.setState({venues});
-      console.log(this.state.venues);
-      console.log(this.state.value);
     })
   }
 
-
-
   componentDidMount() {
     this.updateState();
+    this.handleResize();
+    window.addEventListener("resize", this.handleResize.bind(this));
   }
 
-// changeRad = (radVar) => {
-//   console.log(radVar)
-// }
+  handleChange = (event) => { 
+    console.log(event);
+    LocationsAPI.getAll(event)
+       .then((venues) => {
+         this.setState({venues});
+         console.log(this.state.venues);
+         })
+    }
+
+  handleResize() {
+      if (window.innerWidth < 768) {
+          this.setState({position: 'absolute'});
+     } else {
+          this.setState({position: 'relative'});
+     }
+  }
 
   render() {
     return (
       <main className="app">
         <Header />
         <Filter 
-          
+          handleChange={this.handleChange}
         />
         <Listings 
           listings={this.state.venues}
         />
         <Map 
           locations={this.state.venues}
+          position={this.state.position}
         />
       </main>
     );

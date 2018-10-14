@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
+import icon from "./icons/marker.png";
+import iconActive from "./icons/active.png";
 
 // const LoadingContainer = props => (
 // 	<div className="map">
@@ -17,6 +19,11 @@ const Markers = props => (
 	        	// add the Marker instance to an array of references
 	        	props.refs[index] = instance;
       		}}
+      		icon={
+      			icon
+      			//this.state.icon //iconActive
+		        //props.activeMarker.name === location.name ? iconActive : icon
+		     }
       		name={location.name}
       		address={location.location.address || "address unavailable"}
 		/>
@@ -29,16 +36,20 @@ export class GlaMap extends Component {
 	    showingInfoWindow: false,
 	    activeMarker: {},
 	    selectedPlace: {},
+	    // icon: {iconActive}
 	};
 
 	markers = [];
 
-	onMarkerClick = (props, marker, e) =>
+	onMarkerClick = (props, marker) =>
     this.setState({
 		selectedPlace: props,
 		activeMarker: marker,
-		showingInfoWindow: true
-    });
+		showingInfoWindow: true,
+		// icon: iconActive
+    }
+
+    );
 
 	render() {
 
@@ -48,17 +59,20 @@ export class GlaMap extends Component {
 		        aria-label="Map of Glasgow City Centre"
 		        tabIndex="-1"
 				google={this.props.google}
-				zoom={14}
+				zoom={13}
 				initialCenter={{
 					lat: 55.859292,
 					lng: -4.258055
 				}}
 				className={'map'}
+				containerStyle={{position: this.props.position}}
 			>
 				<Markers
 					locations={this.props.locations}
 					refs={this.markers}
 					onClick={this.onMarkerClick}
+					//icon={this.icon}
+					//icon={this.state.icon}
 				/>
 				<InfoWindow
 					marker={this.state.activeMarker}

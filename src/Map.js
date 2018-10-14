@@ -41,7 +41,7 @@ export class GlaMap extends Component {
 
 	markers = [];
 
-	onMarkerClick = (props, marker) =>
+	onMarkerClick = (props, marker, e) =>
     this.setState({
 		selectedPlace: props,
 		activeMarker: marker,

@@ -32,7 +32,7 @@ class App extends Component {
     LocationsAPI.getAll(event)
        .then((venues) => {
          this.setState({venues});
-         console.log(this.state.venues);
+         //console.log(this.state.venues);
          })
     }
 

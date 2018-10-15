@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
-import icon from "./icons/marker.png";
+import iconInactive from "./icons/marker.png";
 import iconActive from "./icons/active.png";
 
 // const LoadingContainer = props => (
@@ -10,20 +10,13 @@ import iconActive from "./icons/active.png";
 // );
 
 const Markers = props => (
-	props.locations.map((location, index) => (
+	props.locations.map((location) => (
 		<Marker 
 			{...props}
+			onClick={props.onClick}
       		position={{lat: location.location.lat, lng: location.location.lng}}
 			key={location.id}
-	    	ref={instance => {
-	        	// add the Marker instance to an array of references
-	        	props.refs[index] = instance;
-      		}}
-      		icon={
-      			icon
-      			//this.state.icon //iconActive
-		        //props.activeMarker.name === location.name ? iconActive : icon
-		     }
+      		icon={props.activeMarker ? (props.activeMarker.name === location.name ? iconActive : iconInactive) : iconInactive}
       		name={location.name}
       		address={location.location.address || "address unavailable"}
 		/>
@@ -34,22 +27,19 @@ export class GlaMap extends Component {
 
 	state = {
 	    showingInfoWindow: false,
-	    activeMarker: {},
+	    activeMarker: null,
 	    selectedPlace: {},
-	    // icon: {iconActive}
 	};
 
 	markers = [];
 
-	onMarkerClick = (props, marker, e) =>
+	onMarkerClick = (anything1, anything2) =>
     this.setState({
-		selectedPlace: props,
-		activeMarker: marker,
+		selectedPlace: anything1,
+		activeMarker: anything2,
 		showingInfoWindow: true,
-		// icon: iconActive
-    }
-
-    );
+    })
+    ;
 
 	render() {
 
@@ -71,8 +61,7 @@ export class GlaMap extends Component {
 					locations={this.props.locations}
 					refs={this.markers}
 					onClick={this.onMarkerClick}
-					//icon={this.icon}
-					//icon={this.state.icon}
+					activeMarker={this.state.activeMarker}
 				/>
 				<InfoWindow
 					marker={this.state.activeMarker}

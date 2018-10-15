@@ -1,9 +1,4 @@
-import React, { Component } from 'react';
-import * as LocationsAPI from './LocationsAPI';
-import App from './App';
-import Header from './Header';
-import Listings from './Listings';
-import Map from './Map';
+import React from 'react';
 
 const Filter = (props) => {
 

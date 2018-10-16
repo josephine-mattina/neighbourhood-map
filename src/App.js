@@ -3,6 +3,7 @@ import Header from './Header';
 import Filter from './Filter';
 import Listings from './Listings';
 import Map from './Map';
+import Footer from './Footer';
 import * as LocationsAPI from './LocationsAPI';
 import './App.css';
 
@@ -11,7 +12,8 @@ class App extends Component {
   state = {
     venues: [],
     value: '2000',
-    position: '' 
+    position: '',
+    height: '100%'
   }
 
   updateState = () => {
@@ -32,17 +34,25 @@ class App extends Component {
     LocationsAPI.getAll(event)
        .then((venues) => {
          this.setState({venues});
-         //console.log(this.state.venues);
-         })
+         console.log(this.state.venues);
+        })
     }
 
   handleResize() {
       if (window.innerWidth < 768) {
-          this.setState({position: 'absolute'});
+          this.setState({position: 'absolute', height: '50%'});
      } else {
-          this.setState({position: 'relative'});
+          this.setState({position: 'relative', height: '100%'});
      }
   }
+
+  // Callback from Listing
+  // handleListingClick(dataFromListing) {
+
+  // }
+
+  // For line 65: 
+  // handleListingClick={this.handleListingClick}
 
   render() {
     return (
@@ -51,13 +61,14 @@ class App extends Component {
         <Filter 
           handleChange={this.handleChange}
         />
-        <Listings 
+        <Listings
           listings={this.state.venues}
         />
         <Map 
           locations={this.state.venues}
           position={this.state.position}
         />
+        <Footer/>
       </main>
     );
   }

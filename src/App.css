@@ -9,15 +9,14 @@
   grid-template-columns: 1fr 2fr;
   grid-template-areas: 
   "header filter"
-  "listings map";
-  /* TODO: sort out vh affecting header/listings on 0.5km */
-  height: 100vh;
+  "listings map"
+  "footer footer";
 }
 /* Header */
 header {
   grid-area: header;
 }
-header, .filter {
+header, .filter, .credit {
   background-color: #15845d;
   padding: 16px 0px;
   color: #fff;
@@ -62,6 +61,7 @@ h1 {
   overflow: scroll;
   background-color: #5b5b55;
   color: #fff;
+  height: 80vh;
 }
 .single-listing {
   border-bottom: 2px solid #1bc489;
@@ -89,6 +89,20 @@ h1 {
   color: #fff;
 }
 
+/* Footer */
+.credit {
+  grid-area: footer;
+  font-size: 12px;
+  padding: 10px 0px;
+}
+.credit p {
+    margin: auto 30px;
+}
+.credit .link {
+  text-decoration: none;
+  color: #1bc489;
+}
+
 /* Responsive queries */
 
 @media only screen and (min-width: 768px) {
@@ -99,19 +113,47 @@ h1 {
       display: flex;
   }
 }
+/* TODO: fixed position types/ordering/z-index */
 @media only screen and (max-width: 767px) {
-/*  .header {
-    order: 1;
+  .app {
+/*    display: flex;
+    flex-direction: column;*/
+  }
+  .header {
+    /*order: 1;*/
+    /*z-index: 1;*/
+    /*position: absolute;*/
+  }
+  h1, .filter {
+    text-align: center;
   }
   .filter {
-    order: 2;
+    /*order: 2;*/
+    /*position: absolute;*/
+  }
+  .custom-select {
+    margin: 10px auto;
   }
   .map {
-    order: 3;
-    position: absolute;
+    /*order: 1;*/
+    /*z-index: -1;*/
   }
   .listings {
-    order: 4;
-  }*/
+    height: 30vh;
+  }
+  .listings h3 {
+    font-size: 1em;
+  }
+  .single-listing {
+    padding: 12px 30px;
+  }
+  .single-listing p {
+    font-size: 0.8em;
+  }
+  .credit {
+    position: absolute;
+    width: 100%;
+    order: 1;
+  }
 }
 

@@ -55,7 +55,7 @@ export class GlaMap extends Component {
 					lng: -4.258055
 				}}
 				className={'map'}
-				containerStyle={{position: this.props.position}}
+				containerStyle={{position: this.props.position, height: this.props.height}}
 			>
 				<Markers
 					locations={this.props.locations}

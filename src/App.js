@@ -13,7 +13,8 @@ class App extends Component {
     venues: [],
     value: '2000',
     position: '',
-    height: '100%'
+    height: '100%',
+    activeListing: {}
   }
 
   updateState = () => {
@@ -46,13 +47,13 @@ class App extends Component {
      }
   }
 
+  // TODO: activeListing is not being passed to state atm. State logs as empty.
+
   // Callback from Listing
-  // handleListingClick(dataFromListing) {
-
-  // }
-
-  // For line 65: 
-  // handleListingClick={this.handleListingClick}
+  handleListingClick = activeListing => {
+    this.setState({activeListing: activeListing});
+    console.log('this is from App component:', this.state.activeListing);
+  }
 
   render() {
     return (
@@ -63,6 +64,7 @@ class App extends Component {
         />
         <Listings
           listings={this.state.venues}
+          handleListingClick={this.handleListingClick}
         />
         <Map 
           locations={this.state.venues}

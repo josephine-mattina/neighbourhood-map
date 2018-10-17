@@ -1,28 +1,36 @@
-import React from 'react';
-// import SingleListing from './SingleListing';
+import React, { Component } from 'react';
 
-const Listings = (props) => {
+class Listings extends Component {
 
-	// TODO: write click listener for showing address p
-	// TODO: find out what data can be passed from event target
+	// TODO: Ignore for now: write click listener for showing address p
+	// DONE: find out what data can be passed from event target
 
-	// onListingClick = () => {
-	// 	// p display: block
-	// 	// this.props.handleListingClick(dataFromEventTarget);
-	// }
 
-	return(
-		<section className="listings">
-			{props.listings.map(listing => (
-				<article key={listing.id} className="single-listing">
-					<h3>{listing.name}</h3>
-					<p>{listing.location.address || "address unavailable"}</p>
-				</article>
-			))}
-		</section>
-	);
+	onListingClick = (listing, event) => 
+		{console.log('this is from Listings component:', listing.name);
+		this.props.handleListingClick(listing.name)
+	}
+
+	render() {
+		return(
+			<ol className="listings">
+				{this.props.listings.map(listing => (
+					<li key={listing.id} 
+						className="single-listing" 
+						tabIndex="0"
+		                role="button"
+						id={listing} 
+						onClick={this.onListingClick.bind(this, listing)}
+					>
+						<h3>{listing.name}</h3>
+					</li>
+				))}
+			</ol>
+		);
+	}
+
 }
 
 export default Listings;
 
-// <SingleListing listing={listing}/>
+// <p>{listing.location.address || "address unavailable"}</p>

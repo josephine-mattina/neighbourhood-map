@@ -11,6 +11,7 @@ class Listings extends Component {
 
 	render() {
 		return(
+			<section className="listings-container">
 			<ol className="listings">
 				{this.props.listings.map(listing => (
 					<li key={listing.id} 
@@ -24,6 +25,7 @@ class Listings extends Component {
 					</li>
 				))}
 			</ol>
+			</section>
 		);
 	}
 

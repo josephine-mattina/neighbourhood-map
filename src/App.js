@@ -3,7 +3,6 @@ import Header from './Header';
 import Filter from './Filter';
 import Listings from './Listings';
 import Map from './Map';
-import Footer from './Footer';
 import * as LocationsAPI from './LocationsAPI';
 import './App.css';
 
@@ -13,7 +12,6 @@ class App extends Component {
     venues: [],
     value: '2000',
     position: '',
-    height: '100%',
     selectedItem: {},
     showingInfoWindow: false
     // activeMarker: null,
@@ -44,28 +42,38 @@ class App extends Component {
 
   handleResize() {
       if (window.innerWidth < 768) {
-          this.setState({position: 'absolute', height: '50%'});
+          this.setState({position: 'absolute'});
      } else {
-          this.setState({position: 'relative', height: '100%'});
+          this.setState({position: 'relative'});
      }
   }
 
   // Callback from Listing
-  handleListingClick = listing => {
-    this.setState({selectedItem: listing, showingInfoWindow: true}, () => {
-        console.log('This is APP handleListingClick', this.state.selectedItem);
-        console.log('This is APP handleListingClick showingInfoWindow', this.state.showingInfoWindow);
-    });
+  handleListingClick = (listing) => {
+    this.setState(() => ({ selectedItem: listing, showingInfoWindow: true }));
+
   }
+
+  //   handleListingClick = listing => {
+  //   this.setState({selectedItem: listing, showingInfoWindow: true}, () => {
+  //       console.log('This is APP handleListingClick', this.state.selectedItem);
+  //       console.log('This is APP handleListingClick showingInfoWindow', this.state.showingInfoWindow);
+  //   });
+  // }
 
   // Callback from Map
   handleMarkerClick = (location) => {
-    this.setState({selectedItem: location, showingInfoWindow: true}, () => {
-        console.log('This is APP handleMarkerClick selectedItem', this.state.selectedItem);
-        console.log('This is APP handleMarkerClick showingInfoWindow', this.state.showingInfoWindow);
-    });
+    this.setState(() => ({ selectedItem: location, showingInfoWindow: true }));
 
   }
+
+  // handleMarkerClick = (location) => {
+  //   this.setState({selectedItem: location, showingInfoWindow: true}, () => {
+  //       console.log('This is APP handleMarkerClick selectedItem', this.state.selectedItem);
+  //       console.log('This is APP handleMarkerClick showingInfoWindow', this.state.showingInfoWindow);
+  //   });
+
+  // }
 
   render() {
     return (
@@ -85,7 +93,6 @@ class App extends Component {
           showingInfoWindow={this.state.showingInfoWindow}
           handleMarkerClick={this.handleMarkerClick}
         />
-        <Footer/>
       </main>
     );
   }

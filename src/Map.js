@@ -13,7 +13,7 @@ const Markers = props => (
 	props.locations.map((location) => (
 		<Marker 
 			{...props}
-			onClick={props.onClick.bind(this, location)}
+			onClick={props.onClick} //.bind(this, location)
       		position={{lat: location.location.lat, lng: location.location.lng}}
 			key={location.id}
       		icon={props.selectedItem ? (props.selectedItem.name === location.name ? iconActive : iconInactive) : iconInactive}
@@ -27,9 +27,9 @@ const Markers = props => (
 export class GlaMap extends Component {
 
 	// state = {
-	//     showingInfoWindow: false,
-	//     activeMarker: null,
-	//     selectedPlace: {},
+	 
+	//     // selectedPlace: {},
+	//     // showingInfoWindow:false
 	// };
 
 	markers = [];
@@ -44,46 +44,55 @@ export class GlaMap extends Component {
 
 	// }
 
-	// TODO: Work out from 'this' what useful info to pass to App
+	// TODO: Why is showingInfoWindow not working? 
+	// In APP infoWindow state is logged from lines 57 and 65 as true, but props passed in here do not reflect state?
+	
+	
 
-	onMarkerClick = (location) => {
+	onMarkerClick = (marker, location) => {
+		console.log('This is marker', marker, 'This is location', location)
 		this.props.handleMarkerClick(location)
+			//  this.setState({
+
+			// showingInfoWindow: true
+	  //   });
+
 	}
 
 	render() {
 
 		return(
-			<Map 
-		        role="application"
-		        aria-label="Map of Glasgow City Centre"
-		        tabIndex="-1"
-				google={this.props.google}
-				zoom={13}
-				initialCenter={{
-					lat: 55.859292,
-					lng: -4.258055
-				}}
-				className={'map'}
-				containerStyle={{position: this.props.position, height: this.props.height}}
-			>
-				<Markers
-					locations={this.props.locations}
-					refs={this.markers}
-					onClick={this.onMarkerClick.bind(this)}
-					selectedItem={this.props.selectedItem}
-				/>
-				<InfoWindow
-					selectedItem={this.props.selectedItem}
-					visible={this.props.showingInfoWindow}
-					className={'info'}
+				<Map 
+			        role="application"
+			        aria-label="Map of Glasgow City Centre"
+			        tabIndex="-1"
+					google={this.props.google}
+					zoom={13}
+					initialCenter={{
+						lat: 55.859292,
+						lng: -4.258055
+					}}
+					className={'map'}
+					containerStyle={{position: this.props.position}}
 				>
-					<article>
-						<h2>{this.props.selectedItem.name}</h2>
-						<p>{this.props.selectedItem.address}</p>
-					</article>
-				</InfoWindow>
-
-			</Map>
+					<Markers
+						locations={this.props.locations}
+						refs={this.markers}
+						onClick={this.onMarkerClick.bind(this)}
+						selectedItem={this.props.selectedItem}
+					/>
+					<InfoWindow
+						marker={this.props.selectedItem}
+						visible= {this.props.showingInfoWindow}
+						className={'info'}
+						//open=true
+					>
+						<article>
+							<h2>{this.props.selectedItem.name}</h2>
+							<p>{this.props.selectedItem.address}</p>
+						</article>
+					</InfoWindow>
+				</Map>
 		)
 	}
 

@@ -9,24 +9,36 @@
   grid-template-columns: 1fr 2fr;
   grid-template-areas: 
   "header filter"
-  "listings map"
-  "footer footer";
+  "listings map";
 }
 /* Header */
 header {
   grid-area: header;
 }
-header, .filter, .credit {
+header, .filter {
   background-color: #15845d;
   padding: 16px 0px;
   color: #fff;
+}
+h1, .credit {
+  margin: auto 40px;
+  align-self: center;
 }
 h1 {
   font-family: 'Varela Round', sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin: auto 50px;
+}
+.credit {
+  color: #fff;
+  font-size: 10px;
+  padding-top: 8px;
+
+}
+.credit .link {
+  text-decoration: none;
+  color: #1bc489;
 }
 
 /* Filter */
@@ -61,7 +73,6 @@ h1 {
   overflow: scroll;
   background-color: #5b5b55;
   color: #fff;
-  height: 80vh;
 }
 .single-listing {
   border-bottom: 2px solid #1bc489;
@@ -89,20 +100,6 @@ h1 {
   color: #fff;
 }
 
-/* Footer */
-.credit {
-  grid-area: footer;
-  font-size: 12px;
-  padding: 10px 0px;
-}
-.credit p {
-    margin: auto 30px;
-}
-.credit .link {
-  text-decoration: none;
-  color: #1bc489;
-}
-
 /* Responsive queries */
 
 @media only screen and (min-width: 768px) {
@@ -112,34 +109,23 @@ h1 {
   .filter {
       display: flex;
   }
+  .listings {
+    height: 100vh;
+  }
 }
-/* TODO: fixed position types/ordering/z-index */
+
 @media only screen and (max-width: 767px) {
-  .app {
-/*    display: flex;
-    flex-direction: column;*/
-  }
-  .header {
-    /*order: 1;*/
-    /*position: absolute;*/
-  }
-  h1, .filter {
+  h1, .credit, .filter {
     text-align: center;
-  }
-  .filter {
-    /*order: 2;*/
-    /*position: absolute;*/
   }
   .custom-select {
     margin: 10px auto;
   }
   .map {
-    /*order: 3;*/
-    /*z-index: -1;*/
+    height: 50%;
   }
   .listings {
-    /*order: 4;*/
-    height: 30vh;
+    height: 20vh;
   }
   .listings h3 {
     font-size: 1em;
@@ -149,12 +135,6 @@ h1 {
   }
   .single-listing p {
     font-size: 0.8em;
-  }
-  .credit {
-    /*order: 5;*/
-    position: absolute;
-    width: 100%;
-    order: 1;
   }
 }
 

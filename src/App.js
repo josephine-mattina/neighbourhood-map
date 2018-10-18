@@ -14,7 +14,10 @@ class App extends Component {
     value: '2000',
     position: '',
     height: '100%',
-    activeListing: {}
+    selectedItem: {},
+    showingInfoWindow: false
+    // activeMarker: null,
+    // selectedPlace: {},
   }
 
   updateState = () => {
@@ -47,12 +50,21 @@ class App extends Component {
      }
   }
 
-  // TODO: activeListing is not being passed to state atm. State logs as empty.
-
   // Callback from Listing
-  handleListingClick = activeListing => {
-    this.setState({activeListing: activeListing});
-    console.log('this is from App component:', this.state.activeListing);
+  handleListingClick = listing => {
+    this.setState({selectedItem: listing, showingInfoWindow: true}, () => {
+        console.log('This is APP handleListingClick', this.state.selectedItem);
+        console.log('This is APP handleListingClick showingInfoWindow', this.state.showingInfoWindow);
+    });
+  }
+
+  // Callback from Map
+  handleMarkerClick = (location) => {
+    this.setState({selectedItem: location, showingInfoWindow: true}, () => {
+        console.log('This is APP handleMarkerClick selectedItem', this.state.selectedItem);
+        console.log('This is APP handleMarkerClick showingInfoWindow', this.state.showingInfoWindow);
+    });
+
   }
 
   render() {
@@ -69,6 +81,9 @@ class App extends Component {
         <Map 
           locations={this.state.venues}
           position={this.state.position}
+          selectedItem={this.state.selectedItem}
+          showingInfoWindow={this.state.showingInfoWindow}
+          handleMarkerClick={this.handleMarkerClick}
         />
         <Footer/>
       </main>

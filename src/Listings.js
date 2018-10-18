@@ -3,12 +3,10 @@ import React, { Component } from 'react';
 class Listings extends Component {
 
 	// TODO: Ignore for now: write click listener for showing address p
-	// DONE: find out what data can be passed from event target
 
-
-	onListingClick = (listing, event) => 
-		{console.log('this is from Listings component:', listing.name);
-		this.props.handleListingClick(listing.name)
+	onListingClick = (listing) => {
+		console.log('this is from Listings component:', listing);
+		this.props.handleListingClick(listing)
 	}
 
 	render() {

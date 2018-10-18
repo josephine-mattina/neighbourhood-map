@@ -4,11 +4,11 @@
 - [Styling select drop-down](https://codepen.io/ericrasch/pen/zjDBx)
 - [Google Map React Component Tutorial](https://github.com/fullstackreact/google-maps-react)
 - [Making the markers work](https://github.com/fullstackreact/google-maps-react/issues/51#issuecomment-410825880)
--[Foursquare Search for Venues](https://developer.foursquare.com/docs/api/venues/search)
+- [Foursquare Search for Venues](https://developer.foursquare.com/docs/api/venues/search)
 - [Handle map position style on browser resize](https://www.hawatel.com/blog/handle-window-resize-in-react/)
 - [Passing data between React components](https://medium.com/@ruthmpardee/passing-data-between-react-components-103ad82ebd17)
 - [Handling events in React](https://reactjs.org/docs/handling-events.html)
-
+- [Lifting state](https://reactjs.org/docs/lifting-state-up.html)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

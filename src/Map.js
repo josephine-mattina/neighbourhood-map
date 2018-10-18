@@ -13,33 +13,42 @@ const Markers = props => (
 	props.locations.map((location) => (
 		<Marker 
 			{...props}
-			onClick={props.onClick}
+			onClick={props.onClick.bind(this, location)}
       		position={{lat: location.location.lat, lng: location.location.lng}}
 			key={location.id}
-      		icon={props.activeMarker ? (props.activeMarker.name === location.name ? iconActive : iconInactive) : iconInactive}
+      		icon={props.selectedItem ? (props.selectedItem.name === location.name ? iconActive : iconInactive) : iconInactive}
       		name={location.name}
       		address={location.location.address || "address unavailable"}
 		/>
 	)
+	
 ));
 
 export class GlaMap extends Component {
 
-	state = {
-	    showingInfoWindow: false,
-	    activeMarker: null,
-	    selectedPlace: {},
-	};
+	// state = {
+	//     showingInfoWindow: false,
+	//     activeMarker: null,
+	//     selectedPlace: {},
+	// };
 
 	markers = [];
 
-	onMarkerClick = (anything1, anything2) =>
-    this.setState({
-		selectedPlace: anything1,
-		activeMarker: anything2,
-		showingInfoWindow: true,
-    })
-    ;
+	// onMarkerClick = (props, marker) => {
+
+	//     this.setState({
+	// 		selectedPlace: props,
+	// 		activeMarker: marker,
+	// 		showingInfoWindow: true
+	//     });
+
+	// }
+
+	// TODO: Work out from 'this' what useful info to pass to App
+
+	onMarkerClick = (location) => {
+		this.props.handleMarkerClick(location)
+	}
 
 	render() {
 
@@ -60,17 +69,17 @@ export class GlaMap extends Component {
 				<Markers
 					locations={this.props.locations}
 					refs={this.markers}
-					onClick={this.onMarkerClick}
-					activeMarker={this.state.activeMarker}
+					onClick={this.onMarkerClick.bind(this)}
+					selectedItem={this.props.selectedItem}
 				/>
 				<InfoWindow
-					marker={this.state.activeMarker}
-					visible={this.state.showingInfoWindow}
+					selectedItem={this.props.selectedItem}
+					visible={this.props.showingInfoWindow}
 					className={'info'}
 				>
 					<article>
-						<h2>{this.state.selectedPlace.name}</h2>
-						<p>{this.state.selectedPlace.address}</p>
+						<h2>{this.props.selectedItem.name}</h2>
+						<p>{this.props.selectedItem.address}</p>
 					</article>
 				</InfoWindow>
 
@@ -84,3 +93,10 @@ export default GoogleApiWrapper({
   apiKey: "AIzaSyDUsVzFs47MfEzmFIuQCTRfQx_3kXO69RM",
   // LoadingContainer: LoadingContainer
 })(GlaMap)
+
+
+
+
+
+
+

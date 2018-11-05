@@ -18,7 +18,6 @@ import iconActive from "./icons/active.png";
 //       		address={location.location.address || "address unavailable"}
 // 		/>
 // 	)
-	
 // ));
 
 const MapComponent = compose(
@@ -27,6 +26,7 @@ const MapComponent = compose(
 		loadingElement: <div style={{ height: `100%` }} />,
 		containerElement: <div style={{ height: `100vh` }} className={'map'} />,
 		mapElement: <div style={{ height: `100%` }} />,
+		locations: this.props.locations,
 	}),
 	withScriptjs,
 	withGoogleMap
@@ -40,16 +40,28 @@ const MapComponent = compose(
 			lat: 55.859292,
 			lng: -4.258055
 		}}
-		// containerStyle={{position: this.props.position}}
 	>
-		
+	
+		{props.locations.map((location) => {
+			return (
+			<Marker 
+				{...props}
+				onClick={props.onClick} //.bind(this, location)
+	      		position={{lat: location.location.lat, lng: location.location.lng}}
+				key={location.id}
+	      		icon={props.selectedItem ? (props.selectedItem.name === location.name ? iconActive : iconInactive) : iconInactive}
+	      		name={location.name}
+	      		address={location.location.address || "address unavailable"}
+			/>
+			)
+		})}
+
 	</GoogleMap>
 )
 
 class GlaMap extends Component {
 
 	// markers = [];
-
 
 	// onMarkerClick = (marker, location) => {
 	// 	console.log('This is marker', marker, 'This is location', location)
@@ -58,9 +70,12 @@ class GlaMap extends Component {
 
 	render() {
 
-		return(
-			<MapComponent
 
+		return(
+	
+
+			<MapComponent
+				// onMarkerClick={this.onMarkertClick}
 			/>
 		)
 	}
@@ -70,7 +85,11 @@ class GlaMap extends Component {
 export default GlaMap;
 
 
-
+        // <Marker
+        //   position={{lat: 55.859292,lng: -4.258055}}
+        //   title="Click to zoom"
+        //   onClick={props.onMarkerClick}
+        // />
 
 
 

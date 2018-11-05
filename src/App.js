@@ -51,20 +51,13 @@ class App extends Component {
   // Callback from Listing
   handleListingClick = (listing) => {
     this.setState(() => ({ selectedItem: listing, showingInfoWindow: true }));
-
   }
 
-  //   handleListingClick = listing => {
-  //   this.setState({selectedItem: listing, showingInfoWindow: true}, () => {
-  //       console.log('This is APP handleListingClick', this.state.selectedItem);
-  //       console.log('This is APP handleListingClick showingInfoWindow', this.state.showingInfoWindow);
-  //   });
-  // }
 
   // Callback from Map
   handleMarkerClick = (location) => {
-    this.setState(() => ({ selectedItem: location, showingInfoWindow: true }));
-
+    //this.setState(() => ({ selectedItem: location, showingInfoWindow: true }));
+    console.log('aksdjfh')
   }
 
   // handleMarkerClick = (location) => {

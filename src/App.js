@@ -26,42 +26,27 @@ class App extends Component {
     this.updateState();
   }
 
-  handleChange = (event) => { 
-    console.log(event);
+  handleFilter = (event) => { 
     LocationsAPI.getAll(event)
        .then((venues) => {
          this.setState({venues});
-         console.log(this.state.venues);
         })
-    }
-
+  }
 
   // Callback from Listing
   handleListingClick = (listing) => {
-    this.setState(() => ({ selectedItem: listing, showingInfoWindow: true }));
+    this.setState(() => ({ selectedItem: listing.name}));
+    setTimeout(() => {
+      this.setState(() => ({ selectedItem: false }));
+    }, 1500);
   }
-
-
-  // Callback from Map
-  handleMarkerClick = (location) => {
-    //this.setState(() => ({ selectedItem: location, showingInfoWindow: true }));
-    console.log('aksdjfh')
-  }
-
-  // handleMarkerClick = (location) => {
-  //   this.setState({selectedItem: location, showingInfoWindow: true}, () => {
-  //       console.log('This is APP handleMarkerClick selectedItem', this.state.selectedItem);
-  //       console.log('This is APP handleMarkerClick showingInfoWindow', this.state.showingInfoWindow);
-  //   });
-
-  // }
 
   render() {
     return (
       <main className="app">
         <Header />
         <Filter 
-          handleChange={this.handleChange}
+          handleFilter={this.handleFilter}
         />
         <Listings
           listings={this.state.venues}
@@ -70,9 +55,7 @@ class App extends Component {
         <Map 
           locations={this.state.venues}
           position={this.state.position}
-          selectedItem={this.state.selectedItem}
-          showingInfoWindow={this.state.showingInfoWindow}
-          handleMarkerClick={this.handleMarkerClick}
+          clicked={this.state.selectedItem}
         />
       </main>
     );

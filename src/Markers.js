@@ -57,7 +57,3 @@ class Markers extends Component {
 }
 
 export default Markers;
-
-	// icon={props.selectedItem ? (props.selectedItem.name === location.name ? iconActive : iconInactive) : iconInactive}
-	// name={location.name}
-	// address={location.location.address || "address unavailable"}

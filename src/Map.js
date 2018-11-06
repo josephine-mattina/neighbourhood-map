@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import MapWithMarker from './MapWithMarker';
-// import iconInactive from "./icons/marker.png";
-// import iconActive from "./icons/active.png";
-
 
 class Map extends Component {
-
-	// markers = [];
-
-	// onMarkerClick = (marker, location) => {
-	// 	console.log('This is marker', marker, 'This is location', location)
-	// 	this.props.handleMarkerClick(location)
-	// }
 
 	render() {
 		return (

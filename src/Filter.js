@@ -7,7 +7,7 @@ const Filter = (props) => {
 				<h2>Choose a distance</h2>
 				<article className="custom-select">
 					<select 
-						onChange={(event) => props.handleChange(event.target.value)}
+						onChange={(event) => props.handleFilter(event.target.value)}
 						defaultValue="2000" 
 					>
 						<option value="1000">1 km</option>

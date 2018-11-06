@@ -12,10 +12,7 @@ class App extends Component {
     venues: [],
     value: '2000',
     position: '',
-    selectedItem: {},
-    showingInfoWindow: false
-    // activeMarker: null,
-    // selectedPlace: {},
+    selectedItem: undefined
   }
 
   updateState = () => {
@@ -27,8 +24,6 @@ class App extends Component {
 
   componentDidMount() {
     this.updateState();
-    this.handleResize();
-    window.addEventListener("resize", this.handleResize.bind(this));
   }
 
   handleChange = (event) => { 
@@ -40,13 +35,6 @@ class App extends Component {
         })
     }
 
-  handleResize() {
-      if (window.innerWidth < 768) {
-          this.setState({position: 'absolute'});
-     } else {
-          this.setState({position: 'relative'});
-     }
-  }
 
   // Callback from Listing
   handleListingClick = (listing) => {

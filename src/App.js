@@ -24,6 +24,10 @@ class App extends Component {
 
   componentDidMount() {
     this.updateState();
+    setTimeout(() => {
+      const iframe = document.getElementsByTagName('iframe').item(0);
+      iframe.title = "Map of Glasgow City Centre";
+    }, 1500);
   }
 
   handleFilter = (event) => { 

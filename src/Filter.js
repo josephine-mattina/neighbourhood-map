@@ -8,7 +8,8 @@ const Filter = (props) => {
 				<article className="custom-select">
 					<select 
 						onChange={(event) => props.handleFilter(event.target.value)}
-						defaultValue="2000" 
+						defaultValue="2000"
+						aria-label="Choose a distance" 
 					>
 						<option value="1000">1 km</option>
 						<option value="1500">1.5 km</option>

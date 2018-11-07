@@ -32,4 +32,5 @@ On the command line, cd to the root of the repo. Run `npm install`. Run `npm sta
 - [Handle map position style on browser resize](https://www.hawatel.com/blog/handle-window-resize-in-react/)
 - [Passing data between React components](https://medium.com/@ruthmpardee/passing-data-between-react-components-103ad82ebd17)
 - [Handling events in React](https://reactjs.org/docs/handling-events.html)
-- [Lifting state](https://reactjs.org/docs/lifting-state-up.html)
+- [Referencing an element in React](https://stackoverflow.com/questions/44741135/react-equivalent-of-getelementsbytagname?rq=1)
+- [Add title to iframe](https://stackoverflow.com/questions/49012240/google-maps-js-iframe-title)

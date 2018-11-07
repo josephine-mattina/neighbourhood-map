@@ -11,10 +11,10 @@ class Markers extends Component {
 		  isOpen: this.props.clicked,
 		  count: false
 		}
-		this.onToggleOpen = this.onToggleOpen.bind(this);
+		this.onMarkerClick = this.onMarkerClick.bind(this);
 	}
 
-	onToggleOpen() {
+	onMarkerClick() {
 		this.setState((prevState) => ({ isOpen: !(prevState.isOpen) }));
 	}
 
@@ -31,17 +31,17 @@ class Markers extends Component {
 		return (
 			<Marker
 				position={{lat: this.props.lat, lng: this.props.lng}}
-				onClick={this.onToggleOpen}
+				onClick={this.onMarkerClick}
 				icon={this.state.isOpen ? iconActive : iconInactive}
 			>
 			{(this.state.isOpen) && 
 				<InfoWindow 
-					onCloseClick={this.onToggleOpen}
+					onCloseClick={this.onMarkerClick}
 					className={'info'}
 				>
 					<article>
 						{this.props.name ?
-							<h2>{this.props.name}</h2> : null
+							<h2>{this.props.name}</h2> : "name unavailable"
 						}
 						{this.props.location.address ?
 							<p>{this.props.location.address}</p> : "address unavailable"

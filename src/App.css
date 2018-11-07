@@ -89,7 +89,6 @@ h1 {
 .map {
   grid-area: map;
   width: 100%;
-/*  height: 100%;*/
 }
 
 /* Info window */
@@ -136,4 +135,3 @@ h1 {
     font-size: 0.8em;
   }
 }
-

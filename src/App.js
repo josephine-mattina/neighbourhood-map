@@ -24,6 +24,7 @@ class App extends Component {
 
   componentDidMount() {
     this.updateState();
+    // Give title to map iframe for a11y
     setTimeout(() => {
       const iframe = document.getElementsByTagName('iframe').item(0);
       iframe.title = "Map of Glasgow City Centre";
@@ -56,11 +57,13 @@ class App extends Component {
           listings={this.state.venues}
           handleListingClick={this.handleListingClick}
         />
-        <Map 
-          locations={this.state.venues}
-          position={this.state.position}
-          clicked={this.state.selectedItem}
-        />
+        <section role="application">
+          <Map 
+            locations={this.state.venues}
+            position={this.state.position}
+            clicked={this.state.selectedItem}
+          />
+        </section>
       </main>
     );
   }

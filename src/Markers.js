@@ -9,18 +9,22 @@ class Markers extends Component {
 		super(props);
 		this.state = {
 		  isOpen: this.props.clicked,
-		  count: false
+		  count: false,
+		  activeMarker: undefined
 		}
 		this.onMarkerClick = this.onMarkerClick.bind(this);
 	}
 
 	onMarkerClick() {
+		this.props.updateOpenedMarker(this.props.name);
 		this.setState((prevState) => ({ isOpen: !(prevState.isOpen) }));
 	}
 
+	// Handle infowindow open/close on listing click
 	componentDidUpdate() {
 		if(this.props.clicked && !this.state.count) {
 		  this.setState(() => ({isOpen: true, count: true}))
+		  this.props.updateOpenedMarker(this.props.name);
 		  setTimeout(() => {
 		    this.setState(() => ({count: false}))
 		  }, 1500);
@@ -32,9 +36,9 @@ class Markers extends Component {
 			<Marker
 				position={{lat: this.props.lat, lng: this.props.lng}}
 				onClick={this.onMarkerClick}
-				icon={this.state.isOpen ? iconActive : iconInactive}
+				icon={this.state.isOpen && this.props.opened === this.props.name ? iconActive : iconInactive}
 			>
-			{(this.state.isOpen) && 
+			{(this.state.isOpen && this.props.opened === this.props.name) && 
 				<InfoWindow 
 					onCloseClick={this.onMarkerClick}
 					className={'info'}

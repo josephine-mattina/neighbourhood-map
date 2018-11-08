@@ -3,6 +3,18 @@ import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import Markers from './Markers';
 
 class MapWithMarker extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			openedMarker: null
+		}
+		this.updateOpenedMarker = this.updateOpenedMarker.bind(this);
+	}
+
+	updateOpenedMarker(name) {
+		this.setState(() => ({ openedMarker: name }))
+	}
+
 	render() {
 		return (
 			<GoogleMap
@@ -22,6 +34,8 @@ class MapWithMarker extends Component {
 	      		            lat={location.location.lat}
 				            lng={location.location.lng}
 							key={location.id}
+							updateOpenedMarker={this.updateOpenedMarker}
+							opened={this.state.openedMarker}
 							clicked={this.props.clicked === location.name ? true : false}
 						/>
 				))}

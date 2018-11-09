@@ -35,3 +35,4 @@ On the command line, cd to the root of the repo. Run `npm install`. Run `npm sta
 - [Referencing an element in React](https://stackoverflow.com/questions/44741135/react-equivalent-of-getelementsbytagname?rq=1)
 - [Add title to iframe](https://stackoverflow.com/questions/49012240/google-maps-js-iframe-title)
 - [Listening for authentication errors](https://developers.google.com/maps/documentation/javascript/events#auth-errors)
+- [Error Handling in React 16](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)

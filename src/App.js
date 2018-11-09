@@ -5,6 +5,7 @@ import Listings from './Listings';
 import Map from './Map';
 import * as LocationsAPI from './LocationsAPI';
 import './App.css';
+import ErrorBoundary from './ErrorBoundary';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
       gmError: null
     }
     this.gm_authFailure = this.gm_authFailure.bind(this);
+
   }
 
   updateState = () => {
@@ -69,21 +71,23 @@ class App extends Component {
         <Filter 
           handleFilter={this.handleFilter}
         />
-        <Listings
-          listings={this.state.venues}
-          handleListingClick={this.handleListingClick}
-        />
-        <section role="application">
-          {this.state.gmError ? 
-            <div className="errMsg">Sorry, Google Maps can't load right now!<iframe id="errIframe" title="{this.titleIframe}"></iframe></div> :
-            <Map 
-              locations={this.state.venues}
-              position={this.state.position}
-              clicked={this.state.selectedItem}
-              gm_authFailure={this.gm_authFailure}
-            />
-          }
-        </section>
+        <ErrorBoundary>
+          <Listings
+            listings={this.state.venues}
+            handleListingClick={this.handleListingClick}
+          />
+          <section role="application">
+            {this.state.gmError ? 
+              <div className="errMsg">Sorry, Google Maps can't load right now!<iframe id="errIframe" title="{this.titleIframe}"></iframe></div> :
+              <Map 
+                locations={this.state.venues}
+                position={this.state.position}
+                clicked={this.state.selectedItem}
+                gm_authFailure={this.gm_authFailure}
+              />
+            }
+          </section>
+        </ErrorBoundary>
       </main>
     );
   }

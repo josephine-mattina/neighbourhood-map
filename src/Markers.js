@@ -29,6 +29,10 @@ class Markers extends Component {
 		    this.setState(() => ({count: false}))
 		  }, 1500);
 		}
+		//Make sure previous marker is clickable again after closing
+		if (this.props.opened !== this.props.name && this.state.isOpen) {
+		   this.setState(() => ({ isOpen: false }))
+		}
 	}
 
 	render() {

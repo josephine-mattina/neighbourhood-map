@@ -5,8 +5,14 @@ const url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDUsVzFs47MfEzmFIu
 
 class Map extends Component {
 
-	
-	
+	componentDidMount() {
+		window.gm_authFailure = this.gm_authFailure;
+	}		
+
+	gm_authFailure = () => {
+		this.props.gm_authFailure("Authorization failed!");
+	}
+
 	render() {
 		return (
 			<MapWithMarker
@@ -18,6 +24,7 @@ class Map extends Component {
 			/>
 		)
 	}
+
 }
 
 export default Map;

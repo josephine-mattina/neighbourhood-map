@@ -90,6 +90,13 @@ h1 {
   grid-area: map;
   width: 100%;
 }
+.errMsg {
+  text-align: center;
+  padding: 30px;
+}
+#errIframe {
+  display: none;
+}
 
 /* Info window */
 .info {

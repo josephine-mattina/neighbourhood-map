@@ -8,11 +8,16 @@ import './App.css';
 
 class App extends Component {
 
-  state = {
-    venues: [],
-    value: '2000',
-    position: '',
-    selectedItem: undefined
+  constructor(props) {
+    super(props);
+    this.state = {
+      venues: [],
+      value: '2000',
+      position: '',
+      selectedItem: undefined,
+      gmError: null
+    }
+    this.gm_authFailure = this.gm_authFailure.bind(this);
   }
 
   updateState = () => {
@@ -24,10 +29,9 @@ class App extends Component {
 
   componentDidMount() {
     this.updateState();
-    // Give title to map iframe for a11y
+    // Handle iframe a11y
     setTimeout(() => {
-      const iframe = document.getElementsByTagName('iframe').item(0);
-      iframe.title = "Map of Glasgow City Centre";
+      this.titleIframe();
     }, 1500);
   }
 
@@ -46,6 +50,18 @@ class App extends Component {
     }, 1500);
   }
 
+  // Handle custom error message for map
+  gm_authFailure(error) {
+    this.setState(() => ({ gmError: error }));
+    clearTimeout(this.timeOut);
+  }
+
+  // Give title to map iframe for a11y
+  titleIframe = () => {
+    const iframe = document.getElementsByTagName('iframe').item(0);
+    iframe.title = "Map of Glasgow City Centre";
+  }
+ 
   render() {
     return (
       <main className="app">
@@ -58,11 +74,15 @@ class App extends Component {
           handleListingClick={this.handleListingClick}
         />
         <section role="application">
-          <Map 
-            locations={this.state.venues}
-            position={this.state.position}
-            clicked={this.state.selectedItem}
-          />
+          {this.state.gmError ? 
+            <div className="errMsg">Sorry, Google Maps can't load right now!<iframe id="errIframe" title="{this.titleIframe}"></iframe></div> :
+            <Map 
+              locations={this.state.venues}
+              position={this.state.position}
+              clicked={this.state.selectedItem}
+              gm_authFailure={this.gm_authFailure}
+            />
+          }
         </section>
       </main>
     );

@@ -3,6 +3,7 @@ import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import Markers from './Markers';
 
 class MapWithMarker extends Component {
+	// Set state of opened marker so it can be closed when a new one is clicked
 	constructor(props) {
 		super(props);
 		this.state = {

@@ -7,7 +7,7 @@ class Header extends Component {
 	        <header>
 		        <h1>Vego Central</h1>
 	            <p className="credit">
-		            with data provided by <a href="https://foursquare.com/" target="_blank" className="link">Foursquare</a>
+		            with data provided by <a href="https://foursquare.com/" target="_blank" rel="noopener noreferrer" className="link">Foursquare</a>
 		        </p>
 	        </header>
 		)

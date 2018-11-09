@@ -34,3 +34,4 @@ On the command line, cd to the root of the repo. Run `npm install`. Run `npm sta
 - [Handling events in React](https://reactjs.org/docs/handling-events.html)
 - [Referencing an element in React](https://stackoverflow.com/questions/44741135/react-equivalent-of-getelementsbytagname?rq=1)
 - [Add title to iframe](https://stackoverflow.com/questions/49012240/google-maps-js-iframe-title)
+- [Listening for authentication errors](https://developers.google.com/maps/documentation/javascript/events#auth-errors)
